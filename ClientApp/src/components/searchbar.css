@@ -1,0 +1,146 @@
+﻿/* Remove Chroms autofill formatting */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-animation: autofill 0s forwards;
+    animation: autofill 0s forwards;
+}
+
+@keyframes autofill {
+    100% {
+        background: #242628;
+        color: #3acbbd;
+    }
+}
+
+@-webkit-keyframes autofill {
+    100% {
+        background: #242628;
+        color: #3acbbd;
+    }
+}
+
+/*Search bar and form styling*/
+
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+
+.search-container {
+    padding-top: 30px;
+}
+
+.search-form {
+    text-align: center;
+}
+
+.search-box {
+    border: 3px solid #242628;
+    border-right: none;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #3acbbd;
+    background-color: #242628;
+    width: 20%;
+    height: 50px;
+}
+
+.searchTerm:focus {
+    color: #3acbbd;
+}
+
+.search-button {
+    width: 40px;
+    height: 50px;
+    border: 1px solid #242628;
+    background: #242628;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-icon {
+    color: #3acbbd;
+}
+
+/*Loading spinner and styling*/
+.loading-text {
+    text-align: center;
+    padding-top: 3%;
+}
+.loading-spinner {
+    position: absolute;
+    top: calc(50% - 32px);
+    left: calc(50% - 32px);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    perspective: 800px;
+}
+
+.inner {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+    .inner.one {
+        left: 0%;
+        top: 0%;
+        animation: rotate-one 1s linear infinite;
+        border-bottom: 3px solid #EFEFFA;
+    }
+
+    .inner.two {
+        right: 0%;
+        top: 0%;
+        animation: rotate-two 1s linear infinite;
+        border-right: 3px solid #EFEFFA;
+    }
+
+    .inner.three {
+        right: 0%;
+        bottom: 0%;
+        animation: rotate-three 1s linear infinite;
+        border-top: 3px solid #EFEFFA;
+    }
+
+@keyframes rotate-one {
+    0% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+    }
+}
+
+@keyframes rotate-two {
+    0% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+    }
+}
+
+@keyframes rotate-three {
+    0% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+    }
+}
+
