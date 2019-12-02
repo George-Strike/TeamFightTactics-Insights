@@ -11,3 +11,7 @@
     color: white;
 }
 
+#root > div > div:nth-child(1) > div > div > header > nav {
+    margin-bottom: 0px !important;
+}
+
