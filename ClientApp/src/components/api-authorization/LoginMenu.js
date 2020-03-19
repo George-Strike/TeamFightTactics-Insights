@@ -3,6 +3,7 @@ import { NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import authService from './AuthorizeService';
 import { ApplicationPaths } from './ApiAuthorizationConstants';
+import UserProfile from '../UserProfile';
 
 export class LoginMenu extends Component {
     constructor(props) {
@@ -47,7 +48,10 @@ export class LoginMenu extends Component {
     authenticatedView(userName, profilePath, logoutPath) {
         return (<Fragment>
             <NavItem>
-                <NavLink tag={Link} className="text-light" to={profilePath}>Hello {userName}</NavLink>
+                <NavLink tag={Link} className="text-light" to={profilePath}>Account Settings</NavLink>
+            </NavItem>
+            <NavItem>
+                <NavLink tag={Link} className="text-light" to={'/UserProfile'}>Your TFT Profile</NavLink>
             </NavItem>
             <NavItem>
                 <NavLink tag={Link} className="text-light" to={logoutPath}>Logout</NavLink>

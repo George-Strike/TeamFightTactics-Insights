@@ -17,8 +17,8 @@ export class Home extends Component {
         return (
             <SearchBar onResult={function (data) {
                 this.setState({ player: data, hidePlayerData: false });
-                if (this.props.location.pathname !== `/profile/${Object.keys(this.state.player).map(key => this.state.player[key])[4]}/${Object.keys(this.state.player).map(key => this.state.player[key])[0]}`) {
-                    this.props.history.push(`/profile/${Object.keys(this.state.player).map(key => this.state.player[key])[4]}/${Object.keys(this.state.player).map(key => this.state.player[key])[0]}`, { player: data, hidePlayerData: false });
+                if (this.props.location.pathname !== `/profile/${this.state.player.region}/${this.state.player.username}`) {
+                    this.props.history.push(`/profile/${this.state.player.region}/${this.state.player.username}`, { player: data, hidePlayerData: false });
                 }
                 console.log(this.state.hidePlayerData);
             }.bind(this)}

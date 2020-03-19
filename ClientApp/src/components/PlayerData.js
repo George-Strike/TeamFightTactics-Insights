@@ -12,17 +12,14 @@ class PlayerData extends Component {
     renderPlayerData(player) {
         return (
             <div className="player-data">
-                <p>UserName: {Object.keys(player).map(key => player[key])[0]}</p>
+                <img src={"http://ddragon.leagueoflegends.com/cdn/10.5.1/img/profileicon/" + player.profileIconId + ".png"} alt="icon" />
 
-                <p>Platform: {Object.keys(player).map(key => player[key])[4]}</p>
+                <p>Summoner Name: {player.username}</p>
 
-                <p>Level: {Object.keys(player).map(key => player[key])[1]}</p>
+                <p>Level: {player.level}</p>
 
-                <p>Percentage Required To Level Up: {Object.keys(player).map(key => player[key])[2]}%</p>
+                <p>Region: {player.region}</p>
 
-                <p>Rank: {this.rank = Object.keys(player).map(key => player[key])[3], Object.keys(this.rank).map(key => this.rank[key])[1]}</p>
-
-                <img src={this.rank = Object.keys(player).map(key => player[key])[3], Object.keys(this.rank).map(key => this.rank[key])[3]} />
             </div>
         );
     }

@@ -1,4 +1,4 @@
-export const ApplicationName = 'ApexInsight';
+export const ApplicationName = 'TFTInsight';
 
 export const QueryParameterNames = {
   ReturnUrl: 'returnUrl',

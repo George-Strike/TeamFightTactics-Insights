@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace ApexInsight.Controllers
+namespace TFTInsight.Controllers
 {
     public class OidcConfigurationController : Controller
     {

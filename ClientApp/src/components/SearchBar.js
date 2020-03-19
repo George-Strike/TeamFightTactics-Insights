@@ -1,16 +1,19 @@
-﻿import React, { Component } from 'react';
-import spinner from './spinner.gif';
+﻿
+import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import './searchbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import authService from './api-authorization/AuthorizeService';
 
 class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
             value: '',
-            loadSpinner: false
+            loadSpinner: false,
+            region: "euw1",
+            signedInUserName: ""
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -20,30 +23,30 @@ class SearchBar extends Component {
 
     handleChange = (e) => {
         const target = e.target;
-        const value = target.type === 'radio' ? target.name : target.value;
+        const value = target.value;
         const name = target.name;
-
         this.setState({
-            platform: target.type === 'radio' && this.state.platform ? value : this.state.platform ? this.state.platform : value,
+            region: target.type === 'select-one' && this.state.region ? value : this.state.region ? this.state.region : value,
             [name]: value
         });
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
+        let signedInUser = await authService.getUser();
         const { usernameSent } = this.state;
         const username = usernameSent;
-        let platform = this.state.platform;
-
-        this.setState({ loadSpinner: true }, () => fetch('api/Apex/RetrieveData', {
+        let region = this.state.region;
+        this.setState({ loadSpinner: true, signedInUserName: signedInUser != null ? signedInUser.name : "" }, () => fetch('api/Tft/RetrieveData', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                platform: platform,
-                username: username
+                region: region,
+                username: username,
+                signedInUserName: this.state.signedInUserName
             })
         }).then(function (response) { return response.json(); })
             .then(function (data) {
@@ -69,27 +72,11 @@ class SearchBar extends Component {
         return (
             <div className="search-container">
                 <form className="search-form" onSubmit={this.handleSubmit}>
-                    PS4
-                    <input
-                        name="PS4"
-                        type="radio"
-                        checked={this.state.platform === "PS4"}
-                        onChange={this.handleChange}
-                    />
-                    X1
-                    <input
-                        name="X1"
-                        type="radio"
-                        checked={this.state.platform === "X1"}
-                        onChange={this.handleChange}
-                    />
-                    PC
-                    <input
-                        name="PC"
-                        type="radio"
-                        checked={this.state.platform === "PC"}
-                        onChange={this.handleChange}
-                    />
+                    <select id="region" onChange={this.handleChange}>
+                        <option value="euw1" onSelect={this.state.region === "euw1"}>EU West</option>
+                        <option value="na1" onSelect={this.state.region === "na1"}>North America</option>
+                    </select>
+                  
                     <input
                         className="search-box"
                         type="text"
