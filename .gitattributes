@@ -63,4 +63,5 @@
 #*.RTF   diff=astextplain
 
 * linguist-vendored
+*.cs linguist-detectable=true
 *.js linguist-vendored=false
